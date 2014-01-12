@@ -2,7 +2,7 @@
 
 import json
 
-from lib.PbSatTracker import PbSatTracker
+from PbSatTracker import PbSatTracker
 
 if __name__ == '__main__':
 

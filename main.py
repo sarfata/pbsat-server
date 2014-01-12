@@ -11,7 +11,7 @@ import logging
 from flask import Flask
 from flask import request
 
-from lib.PbSatTracker import PbSatTracker
+from PbSatTracker import PbSatTracker
 
 app = Flask(__name__)
 
