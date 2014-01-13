@@ -69,15 +69,17 @@ class PbSatTracker:
 
     def tracking_info(self, objectId, latitude, longitude):
         obs = ephem.Observer()
-        obs.lat = latitude
-        obs.long = longitude
+        # str() is very important here. If you pass a number, pyephem will
+        # expect that we have already converted the angle into radians (or something...)
+        obs.lat = str(latitude)
+        obs.long = str(longitude)
         obs.date = ephem.now()
 
         return {
             'observer': {
                 'datetime': calendar.timegm(obs.date.tuple()),
-                'latitude': obs.lat,
-                'longitude': obs.long
+                'latitude': math.degrees(obs.lat),
+                'longitude': math.degrees(obs.long)
             },
             'object': objectId,
             'tles_age': int(time.time() - self.tles_timestamp),

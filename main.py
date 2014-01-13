@@ -32,8 +32,8 @@ tracker = PbSatTracker()
 
 @app.route('/<sat>')
 def tracking_info(sat):
-    latitude = float(request.args.get('latitude'))
-    longitude = float(request.args.get('longitude'))
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
 
     if latitude is None or longitude is None:
         return json.dumps({ "error": "Invalid latitude / longitude" })
