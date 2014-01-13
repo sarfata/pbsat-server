@@ -40,16 +40,16 @@ class PbSatTracker:
 
         # Caculate position every minute
         positions = []
-        while tr < ts:
-            obs.date = tr
+        time = tr
+        while time < ts:
+            obs.date = time
             satellite.compute(obs)
             positions.append({
-                'time': calendar.timegm(ts.tuple()),
+                'time': calendar.timegm(time.tuple()),
                 'azimuth': math.degrees(satellite.az),
                 'altitude':  math.degrees(satellite.alt)
             })
-            #print "%s %4.1f %5.1f" % (tr, math.degrees(iss.alt), math.degrees(iss.az))
-            tr = ephem.Date(tr + 60.0 * ephem.second)
+            time = ephem.Date(time + 60.0 * ephem.second)
 
         return {
             'rise': {
