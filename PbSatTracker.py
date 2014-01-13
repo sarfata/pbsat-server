@@ -81,6 +81,6 @@ class PbSatTracker:
             },
             'object': objectId,
             'tles_age': int(time.time() - self.tles_timestamp),
-            'pass': self.predict_next_pass(self.tles[objectId], obs)
+            'pass': [ self.predict_next_pass(self.tles[objectId], obs) ]
         }
 
