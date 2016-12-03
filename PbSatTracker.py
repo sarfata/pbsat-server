@@ -86,3 +86,15 @@ class PbSatTracker:
             'pass': [ self.predict_next_pass(self.tles[objectId], obs) ]
         }
 
+    ### Returns the position of the sun in lat/lon
+    def sun_position(self):
+        sun = ephem.Sun()
+        sun.compute()
+        return {
+            'sun': {
+                'latitude': math.degrees(sun.g_dec),
+                'longitude': math.degrees(sun.g_ra)
+                }
+            }
+
+

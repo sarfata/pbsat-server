@@ -30,6 +30,14 @@ def index():
 
 tracker = PbSatTracker()
 
+@app.route('/sun')
+def sun_position():
+    try:
+        p = tracker.sun_position()
+    except Exception as e:
+        return json.dumps({ "error": "Unable to find sun position: {}.".format(e) })
+    return json.dumps(p)
+
 @app.route('/<sat>')
 def tracking_info(sat):
     latitude = request.args.get('latitude')
